@@ -96,14 +96,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disease: 2
-  moveSpeed: 2
+  moveSpeed: 0.9
   curveSpeed: 3
   amplitude: 1
   minCurveSpeed: 3
-  maxCurveSpeed: 10
+  maxCurveSpeed: 5
   minAmplitude: 1
   maxAmplitude: 7
-  life: 1
+  life: 3
+  level: 3
 --- !u!61 &8887032673769247812
 BoxCollider2D:
   m_ObjectHideFlags: 0

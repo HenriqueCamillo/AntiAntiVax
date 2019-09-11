@@ -28,9 +28,11 @@ public class Vaccin : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Virus"))
+        {
             other.GetComponent<Virus>().TakeDamage(disease, damage);
+            Destroy(this.gameObject);
+        }
 
-        Destroy(this.gameObject);
     }
 
     /// <summary>

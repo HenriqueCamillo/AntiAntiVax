@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Syringe: MonoBehaviour
 {
+    private SpriteRenderer sRenderer;
     private Vector2 direction;
-    private bool canShoot = true;
+    private bool canShoot = false;
     [SerializeField] float cooldown;
     [SerializeField] Transform needle;
 
@@ -21,7 +22,26 @@ public class Syringe: MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        sRenderer = GetComponent<SpriteRenderer>();
         this.transform.position = Vector3.zero;
+
+        // GameManager.instance.OnGameStart += Enable;
+        GameManager.instance.OnGameEnd += Disable;
+        GameManager.instance.OnSpawnerStart += Enable;
+        GameManager.instance.OnEvolving += Disable;
+    }
+
+    void Disable()
+    {
+        canShoot = false;
+        sRenderer.enabled = false;
+        StopAllCoroutines();
+    }
+
+    void Enable()
+    {
+        sRenderer.enabled = true;
+        canShoot = true;
     }
 
     void Update()

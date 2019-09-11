@@ -102,8 +102,9 @@ MonoBehaviour:
   minCurveSpeed: 3
   maxCurveSpeed: 10
   minAmplitude: 1
-  maxAmplitude: 7
-  life: 1
+  maxAmplitude: 6
+  life: 3
+  level: 3
 --- !u!61 &1725964156962797369
 BoxCollider2D:
   m_ObjectHideFlags: 0
