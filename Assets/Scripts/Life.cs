@@ -7,14 +7,18 @@ public class Life : MonoBehaviour
 {
     [SerializeField] Image lifeBar;
     [SerializeField] GameObject completeLifeBar;
+    [SerializeField] Animator lifeBarAnimator;
+    [SerializeField] AudioSource lifeBarAudioSource;
     [SerializeField] float barSpeed;
     [SerializeField] int life;
     int maxLife;
     float newFillAmount;
     bool willDie = false;
+    private AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         maxLife = life;
     
         GameManager.instance.OnGameStart += Enable;
@@ -39,6 +43,10 @@ public class Life : MonoBehaviour
     {
         
         life -= level;
+        // life--;
+        audioSource.Play();
+        lifeBarAnimator.Play("LifeShake");
+        lifeBarAudioSource.Play();
         if (life < 0)
             life = 0;
             

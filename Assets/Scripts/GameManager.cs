@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         else if (instance != this)
             Destroy(this.gameObject);
 
+        Time.timeScale = 1.5f;
         
         currentScore.text = "Pontos: 0" ;
         inGameScorePanel.SetActive(false);

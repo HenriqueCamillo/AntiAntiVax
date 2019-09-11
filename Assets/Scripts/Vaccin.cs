@@ -8,6 +8,9 @@ public class Vaccin : MonoBehaviour
     private Rigidbody2D rBody;
     [SerializeField] int damage;
     [SerializeField] float speed;
+    private AudioSource audioSource;
+    private SpriteRenderer sRenderer;
+    private BoxCollider2D col;
 
     [SerializeField] Diseases.DiseaseType disease;
 
@@ -16,6 +19,9 @@ public class Vaccin : MonoBehaviour
     /// </summary>
     void Start()
     {
+        sRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        col = GetComponent<BoxCollider2D>();
         rBody = GetComponent<Rigidbody2D>();
         direction = ((Vector2)(this.transform.rotation * Vector2.up * Mathf.Sin(Time.deltaTime))).normalized;
         rBody.velocity = direction * speed;
@@ -30,16 +36,25 @@ public class Vaccin : MonoBehaviour
         if (other.CompareTag("Virus"))
         {
             other.GetComponent<Virus>().TakeDamage(disease, damage);
-            Destroy(this.gameObject);
+            audioSource.Play();
+            Disable();
+            Destroy(this.gameObject, audioSource.clip.length);
         }
 
     }
+
+    void Disable()
+    {
+        col.enabled = false;
+        sRenderer.enabled = false;
+    }    
 
     /// <summary>
     /// Destroys object when it is out of screen
     /// </summary>
     void OnBecameInvisible()
     {
-        Destroy(this.gameObject);
+        if (!audioSource.isPlaying)
+            Destroy(this.gameObject);
     }
 }

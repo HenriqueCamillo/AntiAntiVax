@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disease: 0
-  moveSpeed: 1.6
+  moveSpeed: 1.5
   curveSpeed: 3
   amplitude: 1
   minCurveSpeed: 3

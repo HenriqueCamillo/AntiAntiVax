@@ -18,10 +18,12 @@ public class Syringe: MonoBehaviour
     [SerializeField] GameObject whoopingCoughVaccin;
 
     private Animator animator;
+    private AudioSource audioSource;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         sRenderer = GetComponent<SpriteRenderer>();
         this.transform.position = Vector3.zero;
 
@@ -69,6 +71,7 @@ public class Syringe: MonoBehaviour
 
     IEnumerator Shoot(GameObject prefab)
     {
+        audioSource.Play();
         animator.Play("Press");
         canShoot = false;
         Instantiate(prefab, needle.position, this.transform.rotation);
